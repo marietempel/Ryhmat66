@@ -3,4 +3,9 @@ package rühmatöö1;
 public class Riiul {
     int veerg;
     int rida;
+
+    public Riiul(int veerg, int rida) {
+        this.veerg = veerg;
+        this.rida = rida;
+    }
 }
