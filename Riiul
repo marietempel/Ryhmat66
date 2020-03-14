@@ -1,0 +1,6 @@
+package rühmatöö1;
+
+public class Riiul {
+    int veerg;
+    int rida;
+}
