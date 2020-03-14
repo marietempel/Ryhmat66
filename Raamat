@@ -4,5 +4,6 @@ public class Raamat {
     String pealkiri;
     String autor;
     int lehekülgedeArv;
-    
+    //lisandub kindlasti veel, nagu tõlkja ja kirjastus ja nii edasi
 }
+
