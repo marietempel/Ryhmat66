@@ -3,5 +3,5 @@ package rühmatöö1;
 public class Raamaturiiul {
     int ridu;
     int veerge;
-    String asukohtVõiTunnusmärk
+    String asukohtVõiTunnusmärk;
 }
