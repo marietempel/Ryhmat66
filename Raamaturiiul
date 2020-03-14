@@ -4,4 +4,10 @@ public class Raamaturiiul {
     int ridu;
     int veerge;
     String asukohtVõiTunnusmärk;
+
+    public Raamaturiiul(int ridu, int veerge, String asukohtVõiTunnusmärk) {
+        this.ridu = ridu;
+        this.veerge = veerge;
+        this.asukohtVõiTunnusmärk = asukohtVõiTunnusmärk;
+    }
 }
