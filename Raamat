@@ -7,4 +7,13 @@ public class Raamat {
     Raamaturiiul raamaturiiul;
     Riiul täpneAsukoht;
     //lisandub kindlasti veel, nagu tõlkja ja kirjastus ja nii edasi
+
+
+    public Raamat(String pealkiri, String autor, int lehekülgedeArv, Raamaturiiul raamaturiiul, Riiul täpneAsukoht) {
+        this.pealkiri = pealkiri;
+        this.autor = autor;
+        this.lehekülgedeArv = lehekülgedeArv;
+        this.raamaturiiul = raamaturiiul;
+        this.täpneAsukoht = täpneAsukoht;
+    }
 }
