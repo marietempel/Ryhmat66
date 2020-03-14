@@ -1,0 +1,8 @@
+package rühmatöö1;
+
+public class Raamat {
+    String pealkiri;
+    String autor;
+    int lehekülgedeArv;
+    
+}
