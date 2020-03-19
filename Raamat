@@ -16,4 +16,15 @@ public class Raamat {
         this.raamaturiiul = raamaturiiul;
         this.täpneAsukoht = täpneAsukoht;
     }
+
+    @Override
+    public String toString() {
+        return "pealkiri: '" + pealkiri + '\'' +
+                ", autor: '" + autor + '\'' +
+                ", lehekülgedeArv: " + lehekülgedeArv +
+                ", raamaturiiul: " + raamaturiiul.getAsukohtVõiTunnusmärk() +
+                ", rida: " + täpneAsukoht.getRida() +
+                ", veerg: " + täpneAsukoht.getVeerg() +
+                '}';
+    }
 }
