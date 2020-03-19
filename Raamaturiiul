@@ -10,4 +10,8 @@ public class Raamaturiiul {
         this.veerge = veerge;
         this.asukohtVõiTunnusmärk = asukohtVõiTunnusmärk;
     }
+
+    public String getAsukohtVõiTunnusmärk() {
+        return asukohtVõiTunnusmärk;
+    }
 }
