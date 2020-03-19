@@ -8,4 +8,12 @@ public class Riiul {
         this.veerg = veerg;
         this.rida = rida;
     }
+
+    public int getVeerg() {
+        return veerg;
+    }
+
+    public int getRida() {
+        return rida;
+    }
 }
