@@ -1,32 +1,24 @@
 package rühmatöö1;
 
+import jdk.swing.interop.SwingInterOpUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Peaklass {
     public static void main(String[] args) throws Exception {
-        //java.io.File fail = new java.io.File("C:/Users/tempel/Documents/OOP/oop/src/nadal4/kodu/marsruut.txt"); //mingi teine teekond
-        // sinu fail on ilmselt teise teekonnaga jätame mõlemad sisse, lihtsalt igaüks kommenteerib välja selle, mis 
+    
+        //Ma ei suuda mõelda hetkel, missugune see fail välja peaks nägema või kuidas sealt andmeid võtma peaks
+        //java.io.File fail = new java.io.File("C:/Users/tempel/Documents/OOP/oop/src/nadal4/kodu/marsruut.txt");
+        // sinu fail on ilmselt teise teekonnaga jätame mõlemad sisse, lihtsalt igaüks kommenteerib välja selle, mis
         // talle ei sobi.
         // java.io.File fail = new java.io.File();
 
-        List<String> read = new ArrayList<String>();
-        try (Scanner sc = new Scanner(fail, "UTF-8")) {
-            // kood, mis kasutab faili
-            while (sc.hasNextLine()) {
-                String rida = sc.nextLine();
-                read.add(rida);
-            }
-        }
-        Raamat[] raamatud = new Raamat[read.size()];
-        int indeks = 0;
-        for (String rida : read) {
-            String[] jupid = rida.split(";"); // väga algeline ja ilmselt halb süsteem, aga eeldades, et fail on 
-            // korrektne (mida me ilmselt võime teha), peaks looma masiivi kõikidest raamatutest, mis failis kirjas on.
-            raamatud[indeks] = new Raamat(jupid[0], jupid[1], Integer.parseInt(jupid[2]),
-                    new Raamaturiiul(Integer.parseInt(jupid[3]), Integer.parseInt(jupid[4]), jupid[5]),
-                    new Riiul(Integer.parseInt(jupid[6]), Integer.parseInt(jupid[7])));
-        }
+        Raamaturiiul sinine = new Raamaturiiul(1,2,"sinine");
+        Raamaturiiul suurTuba = new Raamaturiiul(7,5, "Suur Tuba");
+        Raamaturiiul marieTuba = new Raamaturiiul(9,4, "Marie tuba");
+        Raamat minaOlenSurm = new Raamat("Mina Olen Surm", "Mairi Laurik", 224, suurTuba, new Riiul(3,4));
+        System.out.println(minaOlenSurm);
     }
 }
