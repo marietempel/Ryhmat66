@@ -1,13 +1,32 @@
 package rühmatöö1;
 
-public class TolkeRaamat extends Raamat {
-    String tõlkija;
-    String originaalPealkiri;
+import java.util.List;
 
-    public TolkeRaamat(String pealkiri, String autor, int lehekülgedeArv, Raamaturiiul raamaturiiul, Riiul täpneAsukoht,
-                       String tõlkija, String originaalPealkiri) {
-        super(pealkiri, autor, lehekülgedeArv, raamaturiiul, täpneAsukoht);
+public class TolkeRaamat extends Raamat {
+
+    //t6lke pealkiri;t6lkja;t6lke avaldamisaasta;
+    //     4            5           6
+
+    String tõlkePealkiri;
+    String tõlkija;
+    int tõlkeAvaldamisaasta;
+
+    //konstruktor
+    public TolkeRaamat(String autoriPerenimi, String autoriEesnimi, String originaalPealkiri, int originaalIlmumisaasta, String tõlkePealkiri, String tõlkija, int tõlkeAvaldamisaasta, String kirjastus, String keel, int lehekülgedeArv, String asukoht, int kontrollNumber) {
+        super(autoriPerenimi, autoriEesnimi, originaalPealkiri, originaalIlmumisaasta, kirjastus, keel, lehekülgedeArv, asukoht, kontrollNumber);
+        this.tõlkePealkiri = tõlkePealkiri;
         this.tõlkija = tõlkija;
-        this.originaalPealkiri = originaalPealkiri;
+        this.tõlkeAvaldamisaasta = tõlkeAvaldamisaasta;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " " +
+                "tõlke pealkiri: '" + tõlkePealkiri + '\'' +
+                ", tõlkija: '" + tõlkija + '\'' +
+                ", tõlke avaldamisaasta: '" + tõlkeAvaldamisaasta + '\'' +
+                '}';
+    }
+
+
 }
