@@ -13,10 +13,7 @@ public class Raamat {
     //      0                1                2                    3                 4          5
     // t6lke avaldamisaasta;kirjastus;keel;lehek9lgi;asukoht;Control number
     //      6              7           8      9        10         11
-
-    //kõik on sõnedena, sest alguses nii lihtsam
-    //private on sellepärast, et Magnar ütles, et kõik isendiväljad peaks üldiselt olema privaatsed ja
-    // kui neid on mujal vaja kasutada, siis tuleb kasutada gettereid ja settereid
+    
     private String autoriPerenimi;
     private String autoriEesnimi;
     //String autor; praegu kommenteerisin välja, sest ees- ja perenimega eraldi on alguses lihtsam teha objekti
@@ -56,7 +53,6 @@ public class Raamat {
     }
 
     public static void isenditeLoomineJaListiLisamine(List<String[]> massiivideList) {
-        List<Riiul> riiulid2 = Riiul.getRiiulidRiiulis();
         List<Raamaturiiul> riiulid = Raamaturiiul.getKõigiRaamaturiiuliteList();
         for (String[] raamaturida : massiivideList) { //leiab raamaturiiuli
             int riiuliNumber=0;
@@ -69,12 +65,15 @@ public class Raamat {
             }
             Riiul riiul = new Riiul(Integer.parseInt(riiuliKordinaadid[1]), Integer.parseInt(riiuliKordinaadid[2]),
                     riiulid.get(riiuliNumber));
-            if (raamaturida[4].equals("xxx")) { // loob Raamat tüüpi objekti, kui ei ole tõlgitud raamat, ja
-                // lisab selle kõigi raamatute listi
+            
+            
+            if (raamaturida[4].equals("xxx")) { // loob Raamat tüüpi objekti, kui ei ole tõlgitud raamat,
+                // ja lisab selle kõigi raamatute listi
                 Raamat raamat = new Raamat(raamaturida[0], raamaturida[1], raamaturida[2], Integer.parseInt(raamaturida[3]),
                         raamaturida[7], raamaturida[8], Integer.parseInt(raamaturida[9]), riiul);
                 kõigiRaamatuteList.add(raamat);
-            } else {
+            } 
+            else {
                 Raamat raamat = new TolkeRaamat(raamaturida[0], raamaturida[1], raamaturida[2],
                         Integer.parseInt(raamaturida[3]), raamaturida[4], raamaturida[5], Integer.parseInt(raamaturida[6]),
                         raamaturida[7], raamaturida[8], Integer.parseInt(raamaturida[9]), riiul);
@@ -83,14 +82,21 @@ public class Raamat {
         }
     }
 
-    /*loob meetodi abil massiivide listi
-    kui massiiv[4] == "xxx", siis loob uue isendi, kus xxx pole vaja
-    ja lisab selle listi, kus on raamatud
-     */
-
     public Riiul getTäpneAsukoht() {
         return täpneAsukoht;
     }
+    
+    public String getAutoriPerenimi() {
+        return autoriPerenimi;
+    }
+
+    public String getOriginaalPealkiri() {
+        return originaalPealkiri;
+    }
+
+    public String getKeel() {
+        return keel;
+    }    
 
     @Override
     public String toString() {
