@@ -1,8 +1,5 @@
-# Ryhmat66
-Midagi esteri sarnast ainult isiklikule raamatukogule
-
-//siia võiks kirjutada veel täpsemalt, kuidas seda kasutada saab ja miks me sellise projekti valisime :)
-
+# Ryhmatöö
+Midagi ESTERi-sarnast, aga isiklikule raamatukogule
 
 Koos programmiga (ja vajalike lisafailidega) tuleb esitada ka oma rühmatöö kirjeldus, kus peavad olema
 
@@ -29,4 +26,4 @@ Alustasime projekti kuskil märtsi keskel, kui Marie tegi ära kõigi klasside a
 Raske on kirjeldada iga rühmaliikme panust, sest üks võis teha meetodi, kuid teine muutis seda hilisemas protsessis. Näiteks klassi Raamat meetodid olid Carmeni poolt tehtud, kuid Marie muutis neid, et oleks võimalik raamat riiulisse panna. Aga üldjoontes klassi Raamat meetodid lõi Carmen ja klassi Raamaturiiul meetodid lõi Marie. Tundides sai umbkaudu tehtud kokku kuskil 15, mis sai suhtkoht võrdselt ära jaotatud, Carmen vist tegi natuke rohkem tööd reaalse koodiga, aga kõik teksti failid (k.a. see fail) on Marie loodud.
 Põhiliseks muredeks oli failist lugemine ning kuidas tekitada sellest vastavad objektid. Kidlasti leidus ka ajapuudust, sest eriolukorra pealetulekuga suurnes nii mõnelgi õpikoormus märgatavalt (iseõppimine ei ole nii lihtne) ning seega tekkis ka suuremate töödega ajapuudust.
 Kindlasti vajab veel arendamist klassi Riiul kasutamine, sest hetkel luuakse iga raamatu jaoks uus riiul, aga ideaalis võiks kasutada eksisteerivat riiulit. 
-Programmi testisime printides saadud listid välja peale iga muudatustning vaatasime kas tuleb see, mis pidi. Samuti sai kontrollitud, et kui printidaa listist ainult kindla omadusega asjad, kas ka siis tuleb välja soovitu. Üldiselt oligi testimise põhimõtteks kõige väljaprintimine.
+Programmi testisime printides saadud listid välja peale iga muudatust ning vaatasime kas tuleb see, mis pidi. Samuti sai kontrollitud, et kui printidaa listist ainult kindla omadusega asjad, kas ka siis tuleb välja soovitu. Üldiselt oligi testimise põhimõtteks kõige väljaprintimine.
