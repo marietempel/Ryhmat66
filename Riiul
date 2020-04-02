@@ -1,12 +1,20 @@
 package rühmatöö1;
 
+import java.util.ArrayList;
+import java.util.List;
+
+//suht koht mõttetu klass, selle asemel saaks kasutada Raamatu kirjes lihtsalt Raamaturiiulit ja eraldi täpset asukohta.
+//Aga äkki mõtleme välja, kuidas see normaalselt toimima panna, nii et las ta jääda.
 public class Riiul {
     int veerg;
     int rida;
+    Raamaturiiul raamaturiiul;
+    public static List<Riiul> riiulidRiiulis= new ArrayList<>();
 
-    public Riiul(int veerg, int rida) {
+    public Riiul(int veerg, int rida, Raamaturiiul raamaturiiul) {
         this.veerg = veerg;
         this.rida = rida;
+        this.raamaturiiul = raamaturiiul;
     }
 
     public int getVeerg() {
@@ -15,5 +23,22 @@ public class Riiul {
 
     public int getRida() {
         return rida;
+    }
+
+    public static List<Riiul> getRiiulidRiiulis() {
+        return riiulidRiiulis;
+    }
+
+    public Raamaturiiul getRaamaturiiul() {
+        return raamaturiiul;
+    }
+
+    @Override
+    public String toString() {
+        return "Riiul{" +
+                "veerg=" + veerg +
+                ", rida=" + rida +
+                ", raamaturiiul=" + raamaturiiul +
+                '}';
     }
 }
