@@ -31,5 +31,9 @@ public class TolkeRaamat extends Raamat {
                 '}';
     }
 
+    public String getTõlkePealkiri() {
+        return tõlkePealkiri;
+    }
+
 
 }
