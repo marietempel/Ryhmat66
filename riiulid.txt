@@ -1,0 +1,3 @@
+minu 9 4
+suur 7 5
+sinine 1 2
