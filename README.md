@@ -1,18 +1,6 @@
 # Ryhmatöö
 Midagi ESTERi-sarnast, aga isiklikule raamatukogule
 
-Koos programmiga (ja vajalike lisafailidega) tuleb esitada ka oma rühmatöö kirjeldus, kus peavad olema
-
-autorite nimed;
-projekti põhjalik kirjeldus, kus on kirjas programmi eesmärk ja selgitus programmi üldisest tööst, vajadusel lühike kasutusjuhis;
-iga klassi kohta eraldi selle eesmärk ja olulisemad meetodid;
-projekti tegemise protsessi kirjeldus (erinevad etapid ja rühmaliikmete osalemine neis);
-iga rühmaliikme panus (sh tehtud klassid/meetodid) ja ajakulu (orienteeruvalt);
-tegemise mured (nt millistest teadmistest/oskustest tundsite projekti tegemisel puudust);
-hinnang oma töö lõpptulemusele (millega saite hästi hakkama ja mis vajab arendamist);
-selgitus ja/või näited, kuidas programmi osi eraldi ja programmi tervikuna testisite ehk kuidas veendusite, et programm töötab korrektselt.
-
-
 autorid: Carmen Akkermann ja Marie Tempel
 
 Programmi üldine eesmärk on aidata orienteeruda koduses raamatukogus, näiteks kui inimene omab ligi tuhat raamatut, siis tuleks kasuks, kui saaks otsida mingi programmi abil, kas kindel raamat on inimesel juba olemas või kus see asub.
