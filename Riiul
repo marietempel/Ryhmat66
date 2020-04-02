@@ -3,8 +3,6 @@ package rühmatöö1;
 import java.util.ArrayList;
 import java.util.List;
 
-//suht koht mõttetu klass, selle asemel saaks kasutada Raamatu kirjes lihtsalt Raamaturiiulit ja eraldi täpset asukohta.
-//Aga äkki mõtleme välja, kuidas see normaalselt toimima panna, nii et las ta jääda.
 public class Riiul {
     int veerg;
     int rida;
