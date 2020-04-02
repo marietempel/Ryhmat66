@@ -12,8 +12,11 @@ public class TolkeRaamat extends Raamat {
     int tõlkeAvaldamisaasta;
 
     //konstruktor
-    public TolkeRaamat(String autoriPerenimi, String autoriEesnimi, String originaalPealkiri, int originaalIlmumisaasta, String tõlkePealkiri, String tõlkija, int tõlkeAvaldamisaasta, String kirjastus, String keel, int lehekülgedeArv, String asukoht, int kontrollNumber) {
-        super(autoriPerenimi, autoriEesnimi, originaalPealkiri, originaalIlmumisaasta, kirjastus, keel, lehekülgedeArv, asukoht, kontrollNumber);
+    public TolkeRaamat(String autoriPerenimi, String autoriEesnimi, String originaalPealkiri,
+                       int originaalIlmumisaasta, String tõlkePealkiri, String tõlkija, int tõlkeAvaldamisaasta,
+                       String kirjastus, String keel, int lehekülgedeArv, Riiul täpneAsukoht) {
+        super(autoriPerenimi, autoriEesnimi, originaalPealkiri, originaalIlmumisaasta, kirjastus, keel,
+                lehekülgedeArv, täpneAsukoht);
         this.tõlkePealkiri = tõlkePealkiri;
         this.tõlkija = tõlkija;
         this.tõlkeAvaldamisaasta = tõlkeAvaldamisaasta;
