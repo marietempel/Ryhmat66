@@ -7,21 +7,26 @@ import java.util.Scanner;
 
 import static rühmatöö1.Raamat.*;
 import static rühmatöö1.Raamaturiiul.*;
+import static rühmatöö1.AndmeteHoidla.*;
 
 public class Peaklass {
 
-    //static File failRaamatud = new File("C:/Users/tempel/Documents/OOP/oop/src/rühmatöö1/raamatud");
-    //static File failRiiulid = new File("C:/Users/tempel/Documents/OOP/oop/src/rühmatöö1/riiulid.txt");
-    static File failRaamatud = new File("C:\\Users\\carmen akkermann\\IdeaProjects\\OOP2\\src\\rühmatöö1\\raamatud.txt");
-    static File failRiiulid = new File("C:\\Users\\carmen akkermann\\IdeaProjects\\OOP2\\src\\rühmatöö1\\riiulid.txt");
+    static File failRaamatud = new File("C:/Users/tempel/Documents/OOP/oop/src/rühmatöö1/raamatud");
+    static File failRiiulid = new File("C:/Users/tempel/Documents/OOP/oop/src/rühmatöö1/riiulid.txt");
+    //static File failRaamatud =
+      //      new File("C:\\Users\\carmen akkermann\\IdeaProjects\\OOP2\\src\\rühmatöö1\\raamatud" + ".txt");
+    //static File failRiiulid = new File("C:\\Users\\carmen akkermann\\IdeaProjects\\OOP2\\src\\rühmatöö1\\riiulid
+    // .txt");
 
     public static void main(String[] args) throws Exception {
 
         // ettevalmistus
-
-        riiuliIsenditeLoomineJaListiLisamine(failRiiulid);
-        List<String[]> massiivideList = loeRaamatudFailist(failRaamatud);
-        isenditeLoomineJaListiLisamine(massiivideList);
+        AndmeteHoidla andmeteHoidla = new AndmeteHoidla();
+        andmeteHoidla.riiuliIsenditeLoomineJaListiLisamine(failRiiulid);
+        List<String[]> massiivideList = andmeteHoidla.loeRaamatudFailist(failRaamatud);
+        andmeteHoidla.isenditeLoomineJaListiLisamine(massiivideList);
+        List<Raamat> kõigiRaamatuteList = andmeteHoidla.getRaamatud();
+        List<Raamaturiiul> kõigiRaamaturiiuliteList = andmeteHoidla.getRiiulid();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //SUHTLUS KASUTAJAGA
@@ -98,7 +103,7 @@ public class Peaklass {
 
         boolean kasLeitiRaamat = false;
 
-        for (Raamat raamat : kõigiRaamatuteList) {
+        for (Raamat raamat : raamatud) {
             if (raamat.getOriginaalPealkiri().equals(sisend)) {
                 System.out.println(raamat);
                 kasLeitiRaamat = true;
@@ -116,7 +121,7 @@ public class Peaklass {
 
         boolean kasLeitiRaamat = false;
 
-        for (Raamat raamat : kõigiRaamatuteList) {
+        for (Raamat raamat : raamatud) {
             if (raamat.getAutoriPerenimi().equals(sisend)) {
                 System.out.println(raamat);
                 kasLeitiRaamat = true;
@@ -135,9 +140,9 @@ public class Peaklass {
         String sisend = küsibSisendit.nextLine();  // Loeb kasutaja sisendit
 
         int soovitudRiiuliIndeks = 1000;
-        for (Raamaturiiul riiul : kõigiRaamaturiiuliteList) {
+        for (Raamaturiiul riiul : riiulid) {
             if (riiul.getAsukohtVõiTunnusmärk().equals(sisend)){ //leiab soovitud riiuli
-                soovitudRiiuliIndeks = kõigiRaamaturiiuliteList.indexOf(riiul);
+                soovitudRiiuliIndeks = riiulid.indexOf(riiul);
             }
         }
 
@@ -145,8 +150,8 @@ public class Peaklass {
             System.out.println("Ei leidnud sellise tunnusega raamatut.");
         }
         else {
-            for (Raamat raamat : kõigiRaamatuteList) { // väljastab ainult soovitud tunnusega riiuli raamatud
-                if (raamat.getTäpneAsukoht().getRaamaturiiul().equals(kõigiRaamaturiiuliteList.get(soovitudRiiuliIndeks))) {
+            for (Raamat raamat : raamatud) { // väljastab ainult soovitud tunnusega riiuli raamatud
+                if (raamat.getTäpneAsukoht().getRaamaturiiul().equals(riiulid.get(soovitudRiiuliIndeks))) {
                     System.out.println(raamat);
                 }
             }
@@ -161,7 +166,7 @@ public class Peaklass {
 
         boolean kasLeitiRaamat = false;
 
-        for (Raamat raamat : kõigiRaamatuteList) {
+        for (Raamat raamat : raamatud) {
             if (raamat.getKeel().equals(sisend)) {
                 System.out.println(raamat);
                 kasLeitiRaamat = true;
@@ -173,7 +178,7 @@ public class Peaklass {
     }
 
     private static void väljastaKõikRaamatud() {
-        for (Raamat raamat : kõigiRaamatuteList) {
+        for (Raamat raamat : raamatud) {
             System.out.println(raamat);
         }
     }
