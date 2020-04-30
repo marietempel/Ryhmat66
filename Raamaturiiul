@@ -7,13 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static rühmatöö1.Raamat.kõigiRaamatuteList;
-
 public class Raamaturiiul {
     String asukohtVõiTunnusmärk;
     int ridu;
     int veerge;
-    public static List<Raamaturiiul> kõigiRaamaturiiuliteList = new ArrayList<>();
 
     public Raamaturiiul(String asukohtVõiTunnusmärk, int ridu, int veerge) {
         this.asukohtVõiTunnusmärk = asukohtVõiTunnusmärk;
@@ -33,32 +30,8 @@ public class Raamaturiiul {
         return veerge;
     }
 
-    public static List<Raamaturiiul> getKõigiRaamaturiiuliteList() {
-        return kõigiRaamaturiiuliteList;
-    }
 
     // meetod loob listi, kus on massiividena kõik read failist
-    public static List<String[]> loeRiiulidFailist(File failitee) throws IOException {
-        List<String[]> riiulid = new ArrayList<>();
-        try (Scanner sc = new Scanner(failitee, StandardCharsets.UTF_8)) {
-            while (sc.hasNext()) {
-                String[] riiulMassiivina = sc.nextLine().split(" "); // võtab reas ära semikooloni ja
-                riiulid.add(riiulMassiivina); // lisab listi massiivi    // tekitab massiivi, kus on kõik "tükid"
-                // elementidena
-            }
-        }
-        return riiulid;
-    }
-    //need kaks (loeRiiulidFailist ja riiuliIsenditeLoomineJaListiLisamine) meetodid on sisuliselt copy paste klassi
-    // Raamatu omadest.
-    public static void riiuliIsenditeLoomineJaListiLisamine(File failitee) throws IOException {
-        List<String[]> massiivideList = loeRiiulidFailist(failitee);
-        for (String[] riiul : massiivideList) {
-            Raamaturiiul raamaturiiul = new Raamaturiiul(riiul[0], Integer.parseInt(riiul[1]),
-                    Integer.parseInt(riiul[2]));
-            kõigiRaamaturiiuliteList.add(raamaturiiul);
-        }
-    }
 
     @Override
     public String toString() {
