@@ -13,7 +13,7 @@ public class Raamat {
     //      0                1                2                    3                 4          5
     // t6lke avaldamisaasta;kirjastus;keel;lehek9lgi;asukoht;Control number
     //      6              7           8      9        10         11
-    
+
     private String autoriPerenimi;
     private String autoriEesnimi;
     //String autor; praegu kommenteerisin välja, sest ees- ja perenimega eraldi on alguses lihtsam teha objekti
@@ -23,8 +23,6 @@ public class Raamat {
     private String keel;
     private int lehekülgedeArv;
     Riiul täpneAsukoht;
-
-    public static List<Raamat> kõigiRaamatuteList = new ArrayList<>();
 
     //konstruktor
     public Raamat(String autoriPerenimi, String autoriEesnimi, String originaalPealkiri, int originaalIlmumisaasta,
@@ -39,53 +37,12 @@ public class Raamat {
         this.täpneAsukoht = raamaturiiul;
     }
 
-    // meetod loob listi, kus on massiividena kõik read failist
-    public static List<String[]> loeRaamatudFailist(File failitee) throws IOException {
-        List<String[]> raamatud = new ArrayList<>();
-        try (Scanner sc = new Scanner(failitee, StandardCharsets.UTF_8)) {
-            while (sc.hasNext()) {
-                String[] raamatMassiivina = sc.nextLine().split(";"); // võtab reas ära semikooloni ja
-                raamatud.add(raamatMassiivina); // lisab listi massiivi    // tekitab massiivi, kus on kõik "tükid" elementidena
 
-            }
-        }
-        return raamatud;
-    }
-
-    public static void isenditeLoomineJaListiLisamine(List<String[]> massiivideList) {
-        List<Raamaturiiul> riiulid = Raamaturiiul.getKõigiRaamaturiiuliteList();
-        for (String[] raamaturida : massiivideList) { //leiab raamaturiiuli
-            int riiuliNumber=0;
-            String[] riiuliKordinaadid = raamaturida[10].split(" ");
-            for (int i = 0; i < riiulid.size(); i++) { // otsib üles õige raamaturiiuli.
-                if (riiuliKordinaadid[0].equals(riiulid.get(i).getAsukohtVõiTunnusmärk())) {
-                    riiuliNumber = i;
-                    break;
-                }
-            }
-            Riiul riiul = new Riiul(Integer.parseInt(riiuliKordinaadid[1]), Integer.parseInt(riiuliKordinaadid[2]),
-                    riiulid.get(riiuliNumber));
-            
-            
-            if (raamaturida[4].equals("xxx")) { // loob Raamat tüüpi objekti, kui ei ole tõlgitud raamat,
-                // ja lisab selle kõigi raamatute listi
-                Raamat raamat = new Raamat(raamaturida[0], raamaturida[1], raamaturida[2], Integer.parseInt(raamaturida[3]),
-                        raamaturida[7], raamaturida[8], Integer.parseInt(raamaturida[9]), riiul);
-                kõigiRaamatuteList.add(raamat);
-            } 
-            else {
-                Raamat raamat = new TolkeRaamat(raamaturida[0], raamaturida[1], raamaturida[2],
-                        Integer.parseInt(raamaturida[3]), raamaturida[4], raamaturida[5], Integer.parseInt(raamaturida[6]),
-                        raamaturida[7], raamaturida[8], Integer.parseInt(raamaturida[9]), riiul);
-                kõigiRaamatuteList.add(raamat);
-            }
-        }
-    }
 
     public Riiul getTäpneAsukoht() {
         return täpneAsukoht;
     }
-    
+
     public String getAutoriPerenimi() {
         return autoriPerenimi;
     }
@@ -96,7 +53,7 @@ public class Raamat {
 
     public String getKeel() {
         return keel;
-    }    
+    }
 
     @Override
     public String toString() {
