@@ -1,4 +1,6 @@
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -33,15 +36,20 @@ public class MustRuut extends Application {
         FlowPane flow = new FlowPane();
 
         // lisab kõik ülemise rea nupud ühte listi, et vastavalt sellele saaks hakata neile sisu andma
+        BorderPane ülemisedNupud = new BorderPane();
+        ülemisedNupud.setMinWidth(510);
+        HBox hbox = new HBox();
         List<Button> nupudListis = new ArrayList<>();
         List<String> nuppudeTekstid = new ArrayList<>(Arrays.asList(
                 "Kuva üks raamat", "Kuva ühe autori teoosed",
                 "Kuva üks riiul", "Kuva kindel keel", "Kuva kõik"));
         for (String nupuTekst : nuppudeTekstid) {
             Button nupp = new Button(nupuTekst);
-            flow.getChildren().add(nupp); // lisab aknasse
+            hbox.getChildren().add(nupp); // lisab aknasse
             nupudListis.add(nupp); // lisab listi
         }
+        ülemisedNupud.setCenter(hbox);
+        flow.getChildren().add(ülemisedNupud);
 
         // alumise rea kaks nuppu
         BorderPane alumisedNupud = new BorderPane();
@@ -77,6 +85,25 @@ public class MustRuut extends Application {
 
 
         Scene stseen1 = new Scene(flow, 510, 300, Color.SNOW);
+
+        //laiuse muutmine
+        peaLava.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                tekstiVäli.setMinWidth((Double) newValue); //tekstiväli pikeneb
+                ülemisedNupud.setMinWidth((Double) newValue); //kujundus ei lähe hukka
+            }
+        });
+
+        //kõrguse muutmine
+        peaLava.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                list1.setMaxHeight((Double) newValue); //peaks pikendama listide pikkusi
+                list2.setMaxHeight((Double) newValue);
+            }
+        });
+
         peaLava.setScene(stseen1);
         peaLava.show();
 
@@ -117,7 +144,7 @@ public class MustRuut extends Application {
             public void handle(WindowEvent event) {
                 if (!kasTahetiSulgeda) väljumiseKontroll(peaLava);
             }
-        }); 
+        });
     }
 
     private static void väljumiseKontroll(Stage peaLava) {
