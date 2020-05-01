@@ -29,7 +29,6 @@ public class Raamat {
     }
 
 
-
     public Riiul getTäpneAsukoht() {
         return täpneAsukoht;
     }
@@ -48,15 +47,8 @@ public class Raamat {
 
     @Override
     public String toString() {
-        return "Raamat{" +
-                "autori perenimi: '" + autoriPerenimi + '\'' +
-                ", autori eesnimi: '" + autoriEesnimi + '\'' +
-                ", originaali pealkiri: '" + originaalPealkiri + '\'' +
-                ", originaali ilmumisaasta: '" + originaalIlmumisaasta + '\'' +
-                ", kirjastus: '" + kirjastus + '\'' +
-                ", keel: '" + keel + '\'' +
-                ", lehekülgede arv: '" + lehekülgedeArv + '\'' +
-                ", asukoht: '" + täpneAsukoht + '\'' +
-                '}';
+        return autoriPerenimi + ";" + autoriEesnimi + ";" + originaalPealkiri + ";" +
+                originaalIlmumisaasta + ";" + kirjastus + ";" + keel + ";" + lehekülgedeArv + ";"
+                + täpneAsukoht;
     }
 }
