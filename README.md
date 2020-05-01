@@ -13,10 +13,12 @@ tegemise mured (nt millistest teadmistest/oskustest tundsite projekti tegemisel 
 hinnang oma töö lõpptulemusele (millega saite hästi hakkama ja mis vajab arendamist);
 selgitus ja/või näited, kuidas programmi osi eraldi ja programmi tervikuna testisite ehk kuidas veendusite, et programm töötab korrektselt.
 
-Kuna me jätkasime sama projektiga, siis eeldan, et eelmine kord tehtud klasse ja meetodeid ei pea kommenteerima.
+Me jätkasime oma eelmise rühmatöö projektiga. Sooviks oli luua isiklikule "raamatukogule" andmebaas otsingu võimalustega. Meil on klassid Raamat, TolkeRaamat, Raamaturiiul, Riiul, Peaklass, AndmeteHoidla ja MustRuut. Kuna me jätkasime sama projektiga, siis eeldan, et eelmine kord tehtud klasse ja meetodeid ei pea kommenteerima. Programm tuleks käima panna gradle'i abil.
 
 Lisasime juurde 2 klassi MustRuut ja AndmeteHoidla. MustRuut on graafiline kasutajaliides ja AndmeteHoidla on 1.rühmatöö järel saadud soovitus. AndmeteHoidlasse tõstsime ümber meetodid loeRiiulidFailist ja riiuliIsenditeLoomineJaListiLisamine klassist Raamaturiiul ja meetodid loeRaamatudFailist ja isenditeLoomineJaListiLisamine klassist Raamat.
-Alustasime teist rühmatööd sellega, et Marie lõi AndmeteHoidla klassi ja tekitas graafilise liidese põhja, luues kujunduse (seal hulgas ka vaatas, et akna suuruse muutmisel kujundus väga käest ära ei läheks). Carmen jätkas graafilise liidese ja esimeses rühmatöös tehtud programmi kokkuviimisega.
+Alustasime teist rühmatööd sellega, et Marie lõi AndmeteHoidla klassi ja tekitas graafilise liidese põhja, luues kujunduse (seal hulgas ka vaatas, et akna suuruse muutmisel kujundus väga käest ära ei läheks). Carmen jätkas graafilise liidese ja esimeses rühmatöös tehtud programmi kokkuviimisega. Selle käigus sai natuke muudetud Peaklassi tekitades juurde meetodi ettevalmistus, mis loeb vajalikud andmed failidest ning tekitab AndmeteHoidlasse soovitud listid (raamatutest ja riiulitest). klassi MustRuut sai lisatud meetod väljumiseKontroll, mis küsib kasutajalt, kas ta tõesti tahab programmi sulgeda. 
+
+Kuigi Carmen tegi ilmselt raskema osa programmeerimisest, siis ma ütleks, et meie panus oli suhteliselt võrdne, sest info vahetus oli pidev ning kui üks tabas probleemi, siis teine kohe aitas. Ajaliselt ei oskagi ma öelda, palju kulus. Ilmselt kuskil 9h mõlemal, aga töösse süvenenut ei pane kella tähele ning seega ei ole kindel, kas see ka tõele vastab.
 
 Põhiliseks mureks oli erinevates arvutites programmi tööle saamisega. Kui ühel jooksis ilusasti, siis teiel andis pea alati esimese asjana veateadet ning saigi jälle tund veedetud oma vahel vesteldes, et mida üks või teine tegi ja kuidas programm tööle saada. Kindlasti tekitas probleeme ka gradle. Kuidas seda põhi programmiga siduda või kuidas see üldse korralikult tööle saada. Gradle'i parem tundmine ja mõistmine oleks kindlasti kasuks tulnud. 
 
