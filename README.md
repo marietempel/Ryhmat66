@@ -23,6 +23,8 @@ Kuigi Carmen tegi ilmselt raskema osa programmeerimisest, siis ma ütleks, et me
 
 Põhiliseks mureks oli erinevates arvutites programmi tööle saamisega. Kui ühel jooksis ilusasti, siis teiel andis pea alati esimese asjana veateadet ning saigi jälle tund veedetud omavahel vesteldes, et mida üks või teine tegi ja kuidas programm tööle saada. Kindlasti tekitas probleeme ka gradle. Kuidas seda põhi programmiga siduda või kuidas see üldse korralikult tööle saada. Gradle'i parem tundmine ja mõistmine oleks kindlasti kasuks tulnud. Lisaks tekkis aeg-ajalt mõlemal koodi kirjutades sisulisi probleeme, millega teineteist jooksvalt aitasime.
 
+Kindlasti annaks veel programmi paremaks teha. Näiteks ei jõudnud me teha võimalust raamatut lisada teksti faili. Algul oli plaan, et graafiliseliidese abil saab meie andmebaasi ka raamatut lisada, kuid selleni me veel ei jõudnub. Kui jätta välja see üks asi, siis oleme oma projektiga suhteliselt rahul.
+
 Programmitöö korrektsuses veendusime iga muudatuse järel programmi käivitades ja vaadates, mis juhtub. Näiteks akna suuruse muutmise juures sai korduvalt programmi käivitatud ning vaadatud, mis juhtub, kuhu hüpavad näiteks erinevad nupud. Lisatud/muudetud funktsionaalsusi testis nii funktsionaalsuse looja kui paariline.
 
 ........................................................................................................................................
