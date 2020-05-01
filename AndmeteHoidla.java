@@ -1,14 +1,9 @@
-package rühmatöö1;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import static rühmatöö1.Raamat.*;
-import static rühmatöö1.Raamaturiiul.*;
 
 public class AndmeteHoidla {
     public static List<Raamat> raamatud = new ArrayList<Raamat>();
