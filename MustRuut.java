@@ -1,3 +1,4 @@
+import com.sun.jdi.PrimitiveValue;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -16,7 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,7 +42,7 @@ public class MustRuut extends Application {
         HBox hbox = new HBox();
         List<Button> nupudListis = new ArrayList<>();
         List<String> nuppudeTekstid = new ArrayList<>(Arrays.asList(
-                "Kuva üks raamat", "Kuva ühe autori teoosed",
+                "Kuva üks raamat", "Kuva ühe autori teosed",
                 "Kuva üks riiul", "Kuva kindel keel", "Kuva kõik"));
         for (String nupuTekst : nuppudeTekstid) {
             Button nupp = new Button(nupuTekst);
@@ -107,7 +108,7 @@ public class MustRuut extends Application {
         peaLava.setScene(stseen1);
         peaLava.show();
 
-        //////////////TEGEVUS//////////////
+        //////////////KASUTAJA TEGEVUS//////////////
 
         Peaklass.ettevalmistus();
 
@@ -116,30 +117,36 @@ public class MustRuut extends Application {
                 String nupuTekst = nupp.getText();
                 if (nupuTekst.equals("Kuva üks raamat")) {
                     tekst.setText("Sisestage raamatu pealkiri");
+                    tegevusteLogi.add("Pealkirja järgi raamat");
                     //Peaklass.infoPealkirjaJärgi();
                 }
-                else if (nupuTekst.equals("Kuva ühe autori teoosed")) {
+                else if (nupuTekst.equals("Kuva ühe autori teosed")) {
                     tekst.setText("Sisestage autor (Eesnimi Perenimi)");
-                    //
+                    tegevusteLogi.add("Autori teosed");
                 }
                 else if (nupuTekst.equals("Kuva üks riiul")) {
                     tekst.setText("Sisestage riiuli tunnus");
+                    tegevusteLogi.add("Riiuli teosed");
                 }
                 else if (nupuTekst.equals("Kuva kindel keel")) {
                     tekst.setText("Sisestage keel (eesti, inglise)");
+                    tegevusteLogi.add("Ühes keeles kõik teosed");
                 }
                 else if (nupuTekst.equals("Kuva kõik")) {
                     tekst.setText("Kuvan kõik raamatud.");
+                    tegevusteLogi.add("Kõik raamatud");
                     Peaklass.väljastaKõikRaamatud();
                 }
                 else if (nupuTekst.equals("Lõpp")) {
+                    tegevusteLogi.add("Lõpp");
                     väljumiseKontroll(peaLava);
+                }
+                else if (nupuTekst.equals("Lisa raamat")) {
+                    tekst.setText("See funktsionaalsus veel ei tööta!");
                 }
             });
         }
 
-
-        // kui akent tahetakse sulgeda, siis küsib ksutajalt, kas on kindel, et tahab seda teha
         peaLava.setOnHiding(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent event) {
                 if (!kasTahetiSulgeda) väljumiseKontroll(peaLava);
@@ -147,6 +154,7 @@ public class MustRuut extends Application {
         });
     }
 
+    // kui akent tahetakse sulgeda, siis küsib kasutajalt, kas on kindel, et tahab seda teha
     private static void väljumiseKontroll(Stage peaLava) {
         // luuakse teine lava
         Stage kusimus = new Stage();
@@ -158,6 +166,8 @@ public class MustRuut extends Application {
         okButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 kasTahetiSulgeda = true;
+                try { salvestaLogi(); }
+                catch (IOException e) { e.printStackTrace(); }
                 kusimus.hide();
                 peaLava.hide();
             }
@@ -182,6 +192,16 @@ public class MustRuut extends Application {
         kusimus.setScene(stseen2);
         kusimus.show();
     }
+
+    private static void salvestaLogi() throws IOException {
+        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("logifail.txt")))) {
+            bw.write("Lõpetamise aeg: " + new java.sql.Timestamp(System.currentTimeMillis()));
+            for (String tegevus : tegevusteLogi) {
+                bw.write(tegevus + "\n");
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
         launch(args);
