@@ -1,8 +1,11 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 
 
 public class Peaklass {
@@ -58,125 +61,144 @@ public class Peaklass {
 
 
     // Valib etteantud tsitaatidest suvalise, mida kasutajale näidata
-    private static void lugemiseTsitaat() {
+    public static String lugemiseTsitaat() {
         double suvaarv = Math.random();
-        if (suvaarv >= 0.5) System.out.println("\"Raamat on nagu peegel: kui vaatab sisse ahv, ei saa talle ingel vastu vaadata.\"\n" +
-                "- Georg Christoph Lichtenberg");
-        else System.out.println("\"Pealegi milleks peakski veel raamatuid kirjutama, kirjastama või lugema, kui maailmas valitseb ideaalne ühiskondlik kord.\"" +
+        if (suvaarv >= 0.5) return "\"Raamat on nagu peegel: kui vaatab sisse ahv, ei saa talle ingel vastu vaadata" +
+                ".\"\n" +
+                "- Georg Christoph Lichtenberg";
+        else return "\"Pealegi milleks peakski veel raamatuid kirjutama, kirjastama või lugema, kui maailmas valitseb" +
+                " ideaalne ühiskondlik kord.\"" +
                 "Raamat on pahe, millega tahetakse saavutada voorust, aga kes mõtleb pahele, kui ta on ideaalselt vooruslik. \n" +
-                "- Anton Hansen Tammsaare");
-        System.out.println();
+                "- Anton Hansen Tammsaare";
     }
 
     // Valib meetodi vastavalt kasutaja sisendile
     private static void kasutajaTegevused(String sisend) throws IOException {
         switch (sisend) {
             case "1":
-                infoPealkirjaJärgi();
+                //infoPealkirjaJärgi();
                 break;
             case "2":
-                üheAutoriKõikRaamatud();
+                //üheAutoriKõikRaamatud();
                 break;
             case "3":
-                üheRiiuliKõikRaamatud();
+                //üheRiiuliKõikRaamatud();
                 break;
             case "4":
-                üheKeeleKõikRaamatud();
+                //üheKeeleKõikRaamatud();
                 break;
             case "5":
-                väljastaKõikRaamatud();
+                //väljastaKõikRaamatud();
                 break;
         }
     }
 
 ///////////////////////////////////////TEGEVUSTE MEETODID///////////////////////////////////////
 
-    public static void infoPealkirjaJärgi() {
+    public static ObservableList<String> kõikVastavadPealkirjad(String pealkiri) {
+        ObservableList<String> kõikVastavadRaamatud = FXCollections.observableArrayList();
+        for (Raamat raamat : AndmeteHoidla.raamatud) {
+            if (raamat.getOriginaalPealkiri().equals(pealkiri)) {
+                if (raamat instanceof TolkeRaamat) {
+                    kõikVastavadRaamatud.add(((TolkeRaamat) raamat).getTõlkePealkiri());
+                } else
+                    kõikVastavadRaamatud.add(pealkiri);
+            }
+        }
+        return kõikVastavadRaamatud;
+    }
 
-        Scanner küsibSisendit = new Scanner(System.in);  // Loob Scanner-tüüpi objekti
-        System.out.println("Sisesta raamatu originaalpealkiri: ");
-        String sisend = küsibSisendit.nextLine();
+    public static ObservableList<String> infoPealkirjaJärgi(String pealkiri) {
+
+        ObservableList<String> raamatuInfo = FXCollections.observableArrayList();
+        for (Raamat raamat : AndmeteHoidla.raamatud) {
+            if (raamat instanceof TolkeRaamat) {
+                if (((TolkeRaamat) raamat).getTõlkePealkiri().equals(pealkiri)) {
+                    String[] massiiv = raamat.toString().split(";");
+                    for (String s : massiiv) {
+                        raamatuInfo.add(s);
+                    }
+                    return raamatuInfo;
+                }
+            }
+            if (raamat.getOriginaalPealkiri().equals(pealkiri)) {
+                String[] massiiv = raamat.toString().split(";");
+                for (String s : massiiv) {
+                    raamatuInfo.add(s);
+                }
+                return raamatuInfo;
+            }
+        }
+        raamatuInfo.addAll("Ei", "leitud", "raamatut");
+        return raamatuInfo;
+
+    }
+
+    public static ObservableList<String> üheAutoriKõikRaamatud(String autor) {
+
+        ObservableList<String> autoriKõikRaamatud = FXCollections.observableArrayList();
 
         boolean kasLeitiRaamat = false;
 
         for (Raamat raamat : AndmeteHoidla.raamatud) {
-            if (raamat.getOriginaalPealkiri().equals(sisend)) {
-                System.out.println(raamat);
-                kasLeitiRaamat = true;
+            if (raamat.getAutoriPerenimi().equals(autor)) {
+                if (raamat instanceof TolkeRaamat) {
+                    autoriKõikRaamatud.add(((TolkeRaamat) raamat).getTõlkePealkiri());
+                } else
+                    autoriKõikRaamatud.add(raamat.getOriginaalPealkiri());
             }
         }
-
-        // kui soovitud pealkirjaga raamatut ei leitud
-        if (!kasLeitiRaamat) System.out.println("Ei leidnud sellise pealkirjaga raamatuid.");
+        return autoriKõikRaamatud;
     }
 
-    public static void üheAutoriKõikRaamatud() {
-        Scanner küsibSisendit = new Scanner(System.in);  // Loob Scanner-tüüpi objekti
-        System.out.println("Sisesta raamatu autori perenimi: ");
-        String sisend = küsibSisendit.nextLine();
-
-        boolean kasLeitiRaamat = false;
-
-        for (Raamat raamat : AndmeteHoidla.raamatud) {
-            if (raamat.getAutoriPerenimi().equals(sisend)) {
-                System.out.println(raamat);
-                kasLeitiRaamat = true;
-            }
-        }
-
-        // kui soovitud autori raamatut ei leitud
-        if (!kasLeitiRaamat) System.out.println("Ei leidnud selle autori raamatut.");
-    }
-
-    public static void üheRiiuliKõikRaamatud() throws IOException {
-
-        Scanner küsibSisendit = new Scanner(System.in);  // Loob Scanner-tüüpi objekti
-        System.out.println("Sisesta riiuli tunnus (minu, suur, sinine): ");
-
-        String sisend = küsibSisendit.nextLine();  // Loeb kasutaja sisendit
+    public static ObservableList<String> üheRiiuliKõikRaamatud(String tunnus) {
 
         int soovitudRiiuliIndeks = 1000;
+        ObservableList<String> raamatudRiiulis = FXCollections.observableArrayList();
         for (Raamaturiiul riiul : AndmeteHoidla.riiulid) {
-            if (riiul.getAsukohtVõiTunnusmärk().equals(sisend)){ //leiab soovitud riiuli
+            if (riiul.getAsukohtVõiTunnusmärk().equals(tunnus)) { //leiab soovitud riiuli
                 soovitudRiiuliIndeks = AndmeteHoidla.riiulid.indexOf(riiul);
             }
         }
 
         if (soovitudRiiuliIndeks == 1000) { // kui ei muutnud eelmise tsükliga riiuli indeksit
-            System.out.println("Ei leidnud sellise tunnusega raamatut.");
-        }
-        else {
+            raamatudRiiulis.addAll("Ei", "leidnud", "sellist",
+                    "riiulit");
+        } else {
             for (Raamat raamat : AndmeteHoidla.raamatud) { // väljastab ainult soovitud tunnusega riiuli raamatud
                 if (raamat.getTäpneAsukoht().getRaamaturiiul().equals(AndmeteHoidla.riiulid.get(soovitudRiiuliIndeks))) {
-                    System.out.println(raamat);
+                    if (raamat instanceof TolkeRaamat) {
+                        raamatudRiiulis.add(((TolkeRaamat) raamat).getTõlkePealkiri());
+                    } else
+                        raamatudRiiulis.add(raamat.getOriginaalPealkiri());
                 }
             }
         }
-
+        return raamatudRiiulis;
     }
 
-    public static void üheKeeleKõikRaamatud() {
-        Scanner küsibSisendit = new Scanner(System.in);  // Loob Scanner-tüüpi objekti
-        System.out.println("Sisesta soovitav raamatu keel (nt eesti, inglise): ");
-        String sisend = küsibSisendit.nextLine();
+    public static ObservableList<String> üheKeeleKõikRaamatud(String keel) {
 
-        boolean kasLeitiRaamat = false;
-
+        ObservableList<String> antudKeelsedRaamatud = FXCollections.observableArrayList();
         for (Raamat raamat : AndmeteHoidla.raamatud) {
-            if (raamat.getKeel().equals(sisend)) {
-                System.out.println(raamat);
-                kasLeitiRaamat = true;
+            if (raamat.getKeel().equals(keel)) {
+                if (raamat instanceof TolkeRaamat) {
+                    antudKeelsedRaamatud.add(((TolkeRaamat) raamat).getTõlkePealkiri());
+                } else
+                    antudKeelsedRaamatud.add(raamat.getOriginaalPealkiri());
             }
         }
-
-        // kui soovitud keeles raamatut ei leitud
-        if (!kasLeitiRaamat) System.out.println("Ei leidnud selles keeles raamatuid.");
+        return antudKeelsedRaamatud;
     }
 
-    public static void väljastaKõikRaamatud() {
+    public static ObservableList<String> väljastaKõikRaamatud() {
+        ObservableList<String> kõikRaamatud = FXCollections.observableArrayList();
         for (Raamat raamat : AndmeteHoidla.raamatud) {
-            System.out.println(raamat);
+            if (raamat instanceof TolkeRaamat) {
+                kõikRaamatud.add(((TolkeRaamat) raamat).getTõlkePealkiri());
+            } else
+                kõikRaamatud.add(raamat.getOriginaalPealkiri());
         }
+        return kõikRaamatud;
     }
-
 }
