@@ -9,20 +9,20 @@ public class Peaklass {
 
     static File failRaamatud = new File("raamatud.txt");
     static File failRiiulid = new File("riiulid.txt");
-    //static File failRaamatud =
-    //      new File("C:\\Users\\carmen akkermann\\IdeaProjects\\OOP2\\src\\rühmatöö1\\raamatud" + ".txt");
-    //static File failRiiulid = new File("C:\\Users\\carmen akkermann\\IdeaProjects\\OOP2\\src\\rühmatöö1\\riiulid
-    // .txt");
 
-    public static void main(String[] args) throws Exception {
-
-        // ettevalmistus
+    public static void ettevalmistus() throws IOException {
         AndmeteHoidla andmeteHoidla = new AndmeteHoidla();
         andmeteHoidla.riiuliIsenditeLoomineJaListiLisamine(failRiiulid);
         List<String[]> massiivideList = andmeteHoidla.loeRaamatudFailist(failRaamatud);
         andmeteHoidla.isenditeLoomineJaListiLisamine(massiivideList);
-        List<Raamat> kõigiRaamatuteList = andmeteHoidla.getRaamatud();
-        List<Raamaturiiul> kõigiRaamaturiiuliteList = andmeteHoidla.getRiiulid();
+        //List<Raamat> kõigiRaamatuteList = andmeteHoidla.getRaamatud();
+        //List<Raamaturiiul> kõigiRaamaturiiuliteList = andmeteHoidla.getRiiulid();
+    }
+
+    public static void main(String[] args) throws Exception {
+
+        // ettevalmistus
+        ettevalmistus();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //SUHTLUS KASUTAJAGA
@@ -91,7 +91,7 @@ public class Peaklass {
 
 ///////////////////////////////////////TEGEVUSTE MEETODID///////////////////////////////////////
 
-    private static void infoPealkirjaJärgi() {
+    public static void infoPealkirjaJärgi() {
 
         Scanner küsibSisendit = new Scanner(System.in);  // Loob Scanner-tüüpi objekti
         System.out.println("Sisesta raamatu originaalpealkiri: ");
@@ -110,7 +110,7 @@ public class Peaklass {
         if (!kasLeitiRaamat) System.out.println("Ei leidnud sellise pealkirjaga raamatuid.");
     }
 
-    private static void üheAutoriKõikRaamatud() {
+    public static void üheAutoriKõikRaamatud() {
         Scanner küsibSisendit = new Scanner(System.in);  // Loob Scanner-tüüpi objekti
         System.out.println("Sisesta raamatu autori perenimi: ");
         String sisend = küsibSisendit.nextLine();
@@ -128,7 +128,7 @@ public class Peaklass {
         if (!kasLeitiRaamat) System.out.println("Ei leidnud selle autori raamatut.");
     }
 
-    private static void üheRiiuliKõikRaamatud() throws IOException {
+    public static void üheRiiuliKõikRaamatud() throws IOException {
 
         Scanner küsibSisendit = new Scanner(System.in);  // Loob Scanner-tüüpi objekti
         System.out.println("Sisesta riiuli tunnus (minu, suur, sinine): ");
@@ -155,7 +155,7 @@ public class Peaklass {
 
     }
 
-    private static void üheKeeleKõikRaamatud() {
+    public static void üheKeeleKõikRaamatud() {
         Scanner küsibSisendit = new Scanner(System.in);  // Loob Scanner-tüüpi objekti
         System.out.println("Sisesta soovitav raamatu keel (nt eesti, inglise): ");
         String sisend = küsibSisendit.nextLine();
@@ -173,7 +173,7 @@ public class Peaklass {
         if (!kasLeitiRaamat) System.out.println("Ei leidnud selles keeles raamatuid.");
     }
 
-    private static void väljastaKõikRaamatud() {
+    public static void väljastaKõikRaamatud() {
         for (Raamat raamat : AndmeteHoidla.raamatud) {
             System.out.println(raamat);
         }
