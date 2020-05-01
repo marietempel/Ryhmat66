@@ -33,10 +33,7 @@ public class Riiul {
 
     @Override
     public String toString() {
-        return "Riiul{" +
-                "veerg=" + veerg +
-                ", rida=" + rida +
-                ", raamaturiiul=" + raamaturiiul +
-                '}';
+        return veerg + ";"+ rida + ";" + raamaturiiul;
+
     }
 }
