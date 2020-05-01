@@ -5,14 +5,6 @@ autorid: Carmen Akkermann ja Marie Tempel
 
 2.rühmatöö
 
-projekti põhjalik kirjeldus, kus on kirjas programmi eesmärk ja selgitus programmi üldisest tööst, vajadusel lühike kasutusjuhis;
-iga klassi kohta eraldi selle eesmärk ja olulisemad meetodid;
-projekti tegemise protsessi kirjeldus (erinevad etapid ja rühmaliikmete osalemine neis);
-iga rühmaliikme panus (sh tehtud klassid/meetodid) ja ajakulu (orienteeruvalt);
-tegemise mured (nt millistest teadmistest/oskustest tundsite projekti tegemisel puudust);
-hinnang oma töö lõpptulemusele (millega saite hästi hakkama ja mis vajab arendamist);
-selgitus ja/või näited, kuidas programmi osi eraldi ja programmi tervikuna testisite ehk kuidas veendusite, et programm töötab korrektselt.
-
 Me jätkasime oma eelmise rühmatöö projektiga. Sooviks oli luua isiklikule "raamatukogule" andmebaas otsinguvõimalustega. Meil on klassid Raamat, TolkeRaamat, Raamaturiiul, Riiul, Peaklass, AndmeteHoidla ja MustRuut. Kuna me jätkasime sama projektiga, siis eeldan, et eelmine kord tehtud klasse ja meetodeid ei pea uuesti kommenteerima (allpool on ka esimese rühmatöö README). Programm tuleb käima panna gradle'i abil.
 
 Lisasime juurde 2 klassi MustRuut ja AndmeteHoidla. MustRuut on graafiline kasutajaliides ja AndmeteHoidla on 1.rühmatöö järel saadud soovitus. AndmeteHoidlasse tõstsime ümber meetodid loeRiiulidFailist ja riiuliIsenditeLoomineJaListiLisamine klassist Raamaturiiul ja meetodid loeRaamatudFailist ja isenditeLoomineJaListiLisamine klassist Raamat.
