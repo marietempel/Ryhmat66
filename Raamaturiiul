@@ -33,9 +33,7 @@ public class Raamaturiiul {
 
     @Override
     public String toString() {
-        return "Raamaturiiul{" +
-                "asukohtVõiTunnusmärk='" + asukohtVõiTunnusmärk + '\'' +
-                '}';
+        return asukohtVõiTunnusmärk;
     }
 }
 
