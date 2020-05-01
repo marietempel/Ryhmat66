@@ -1,20 +1,16 @@
-package rühmatöö1;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
-import static rühmatöö1.Raamat.*;
-import static rühmatöö1.Raamaturiiul.*;
-import static rühmatöö1.AndmeteHoidla.*;
+
 
 public class Peaklass {
 
-    static File failRaamatud = new File("C:/Users/tempel/Documents/OOP/oop/src/rühmatöö1/raamatud");
-    static File failRiiulid = new File("C:/Users/tempel/Documents/OOP/oop/src/rühmatöö1/riiulid.txt");
+    static File failRaamatud = new File("raamatud.txt");
+    static File failRiiulid = new File("riiulid.txt");
     //static File failRaamatud =
-      //      new File("C:\\Users\\carmen akkermann\\IdeaProjects\\OOP2\\src\\rühmatöö1\\raamatud" + ".txt");
+    //      new File("C:\\Users\\carmen akkermann\\IdeaProjects\\OOP2\\src\\rühmatöö1\\raamatud" + ".txt");
     //static File failRiiulid = new File("C:\\Users\\carmen akkermann\\IdeaProjects\\OOP2\\src\\rühmatöö1\\riiulid
     // .txt");
 
@@ -103,7 +99,7 @@ public class Peaklass {
 
         boolean kasLeitiRaamat = false;
 
-        for (Raamat raamat : raamatud) {
+        for (Raamat raamat : AndmeteHoidla.raamatud) {
             if (raamat.getOriginaalPealkiri().equals(sisend)) {
                 System.out.println(raamat);
                 kasLeitiRaamat = true;
@@ -121,7 +117,7 @@ public class Peaklass {
 
         boolean kasLeitiRaamat = false;
 
-        for (Raamat raamat : raamatud) {
+        for (Raamat raamat : AndmeteHoidla.raamatud) {
             if (raamat.getAutoriPerenimi().equals(sisend)) {
                 System.out.println(raamat);
                 kasLeitiRaamat = true;
@@ -140,9 +136,9 @@ public class Peaklass {
         String sisend = küsibSisendit.nextLine();  // Loeb kasutaja sisendit
 
         int soovitudRiiuliIndeks = 1000;
-        for (Raamaturiiul riiul : riiulid) {
+        for (Raamaturiiul riiul : AndmeteHoidla.riiulid) {
             if (riiul.getAsukohtVõiTunnusmärk().equals(sisend)){ //leiab soovitud riiuli
-                soovitudRiiuliIndeks = riiulid.indexOf(riiul);
+                soovitudRiiuliIndeks = AndmeteHoidla.riiulid.indexOf(riiul);
             }
         }
 
@@ -150,8 +146,8 @@ public class Peaklass {
             System.out.println("Ei leidnud sellise tunnusega raamatut.");
         }
         else {
-            for (Raamat raamat : raamatud) { // väljastab ainult soovitud tunnusega riiuli raamatud
-                if (raamat.getTäpneAsukoht().getRaamaturiiul().equals(riiulid.get(soovitudRiiuliIndeks))) {
+            for (Raamat raamat : AndmeteHoidla.raamatud) { // väljastab ainult soovitud tunnusega riiuli raamatud
+                if (raamat.getTäpneAsukoht().getRaamaturiiul().equals(AndmeteHoidla.riiulid.get(soovitudRiiuliIndeks))) {
                     System.out.println(raamat);
                 }
             }
@@ -166,7 +162,7 @@ public class Peaklass {
 
         boolean kasLeitiRaamat = false;
 
-        for (Raamat raamat : raamatud) {
+        for (Raamat raamat : AndmeteHoidla.raamatud) {
             if (raamat.getKeel().equals(sisend)) {
                 System.out.println(raamat);
                 kasLeitiRaamat = true;
@@ -178,7 +174,7 @@ public class Peaklass {
     }
 
     private static void väljastaKõikRaamatud() {
-        for (Raamat raamat : raamatud) {
+        for (Raamat raamat : AndmeteHoidla.raamatud) {
             System.out.println(raamat);
         }
     }
