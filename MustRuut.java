@@ -1,4 +1,3 @@
-import com.sun.jdi.PrimitiveValue;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,7 +16,10 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -66,7 +68,7 @@ public class MustRuut extends Application {
         BorderPane tekstiVäli = new BorderPane();
         tekstiVäli.setMinWidth(510);
         TextField tekst = new TextField();
-        tekst.setText("Sisestage tekst siia");
+        tekst.setText(Peaklass.lugemiseTsitaat());
         tekstiVäli.setCenter(tekst);
         flow.getChildren().add(tekstiVäli);
 
@@ -78,12 +80,10 @@ public class MustRuut extends Application {
         flow.getChildren().add(list1);
 
         ListView<String> list2 = new ListView<String>();
-        ObservableList<String> info = FXCollections.observableArrayList(
-                "Siia", "tuleb", "kogu", "muu", "info.");
+        ObservableList<String> info = FXCollections.observableArrayList();
         list2.setMaxHeight(200);
         list2.setItems(info);
         flow.getChildren().add(list2);
-
 
         Scene stseen1 = new Scene(flow, 510, 300, Color.SNOW);
 
@@ -108,7 +108,7 @@ public class MustRuut extends Application {
         peaLava.setScene(stseen1);
         peaLava.show();
 
-        //////////////KASUTAJA TEGEVUS//////////////
+        //////////////TEGEVUS//////////////
 
         Peaklass.ettevalmistus();
 
@@ -118,35 +118,58 @@ public class MustRuut extends Application {
                 if (nupuTekst.equals("Kuva üks raamat")) {
                     tekst.setText("Sisestage raamatu pealkiri");
                     tegevusteLogi.add("Pealkirja järgi raamat");
-                    //Peaklass.infoPealkirjaJärgi();
-                }
-                else if (nupuTekst.equals("Kuva ühe autori teosed")) {
-                    tekst.setText("Sisestage autor (Eesnimi Perenimi)");
+                    tekst.textProperty().addListener(new ChangeListener<String>() {
+                        @Override
+                        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                            list1.setItems(Peaklass.kõikVastavadPealkirjad(newValue));
+                        }
+                    });
+                } else if (nupuTekst.equals("Kuva ühe autori teosed")) {
+                    tekst.setText("Sisestage autor (Perenimi)");
                     tegevusteLogi.add("Autori teosed");
-                }
-                else if (nupuTekst.equals("Kuva üks riiul")) {
+                    tekst.textProperty().addListener(new ChangeListener<String>() {
+                        @Override
+                        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                           list1.setItems(Peaklass.üheAutoriKõikRaamatud(newValue));
+                        }
+                    });
+
+                } else if (nupuTekst.equals("Kuva üks riiul")) {
                     tekst.setText("Sisestage riiuli tunnus");
                     tegevusteLogi.add("Riiuli teosed");
-                }
-                else if (nupuTekst.equals("Kuva kindel keel")) {
+                    tekst.textProperty().addListener(new ChangeListener<String>() {
+                        @Override
+                        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                            list1.setItems(Peaklass.üheRiiuliKõikRaamatud(newValue));
+                        }
+                    });
+                } else if (nupuTekst.equals("Kuva kindel keel")) {
                     tekst.setText("Sisestage keel (eesti, inglise)");
                     tegevusteLogi.add("Ühes keeles kõik teosed");
-                }
-                else if (nupuTekst.equals("Kuva kõik")) {
+                    tekst.textProperty().addListener(new ChangeListener<String>() {
+                        @Override
+                        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                            list1.setItems(Peaklass.üheKeeleKõikRaamatud(newValue));
+                        }
+                    });
+                } else if (nupuTekst.equals("Kuva kõik")) {
                     tekst.setText("Kuvan kõik raamatud.");
                     tegevusteLogi.add("Kõik raamatud");
-                    Peaklass.väljastaKõikRaamatud();
-                }
-                else if (nupuTekst.equals("Lõpp")) {
+                    list1.setItems(Peaklass.väljastaKõikRaamatud());
+                } else if (nupuTekst.equals("Lõpp")) {
                     tegevusteLogi.add("Lõpp");
                     väljumiseKontroll(peaLava);
-                }
-                else if (nupuTekst.equals("Lisa raamat")) {
+                } else if (nupuTekst.equals("Lisa raamat")) {
                     tekst.setText("See funktsionaalsus veel ei tööta!");
                 }
             });
-        }
 
+            list1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+                public void changed(ObservableValue<? extends String> ov, String oldValue, String newValue) {
+                    list2.setItems(Peaklass.infoPealkirjaJärgi(newValue));
+                }
+            });
+        }
         peaLava.setOnHiding(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent event) {
                 if (!kasTahetiSulgeda) väljumiseKontroll(peaLava);
@@ -154,56 +177,59 @@ public class MustRuut extends Application {
         });
     }
 
-    // kui akent tahetakse sulgeda, siis küsib kasutajalt, kas on kindel, et tahab seda teha
-    private static void väljumiseKontroll(Stage peaLava) {
-        // luuakse teine lava
-        Stage kusimus = new Stage();
-        // küsimuse ja kahe nupu loomine
-        Label label = new Label("Kas soovite koduraamatukogust väljuda?");
-        Button okButton = new Button("Jah");
-        Button cancelButton = new Button("Ei");
-        // sündmuse lisamine nupule Jah
-        okButton.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                kasTahetiSulgeda = true;
-                try { salvestaLogi(); }
-                catch (IOException e) { e.printStackTrace(); }
-                kusimus.hide();
-                peaLava.hide();
-            }
-        });
-        // sündmuse lisamine nupule Ei
-        cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                peaLava.show();
-                kusimus.hide();
-            }
-        });
-        // nuppude grupeerimine
-        FlowPane pane = new FlowPane(10, 10);
-        pane.setAlignment(Pos.CENTER);
-        pane.getChildren().addAll(okButton, cancelButton);
-        // küsimuse ja nuppude gruppi paigutamine
-        VBox vBox = new VBox(10);
-        vBox.setAlignment(Pos.CENTER);
-        vBox.getChildren().addAll(label, pane);
-        //stseeni loomine ja näitamine
-        Scene stseen2 = new Scene(vBox);
-        kusimus.setScene(stseen2);
-        kusimus.show();
-    }
+        // kui akent tahetakse sulgeda, siis küsib kasutajalt, kas on kindel, et tahab seda teha
+        private static void väljumiseKontroll (Stage peaLava){
+            // luuakse teine lava
+            Stage kusimus = new Stage();
+            // küsimuse ja kahe nupu loomine
+            Label label = new Label("Kas soovite koduraamatukogust väljuda?");
+            Button okButton = new Button("Jah");
+            Button cancelButton = new Button("Ei");
+            // sündmuse lisamine nupule Jah
+            okButton.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    kasTahetiSulgeda = true;
+                    try {
+                        salvestaLogi();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    kusimus.hide();
+                    peaLava.hide();
+                }
+            });
+            // sündmuse lisamine nupule Ei
+            cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    peaLava.show();
+                    kusimus.hide();
+                }
+            });
+            // nuppude grupeerimine
+            FlowPane pane = new FlowPane(10, 10);
+            pane.setAlignment(Pos.CENTER);
+            pane.getChildren().addAll(okButton, cancelButton);
+            // küsimuse ja nuppude gruppi paigutamine
+            VBox vBox = new VBox(10);
+            vBox.setAlignment(Pos.CENTER);
+            vBox.getChildren().addAll(label, pane);
+            //stseeni loomine ja näitamine
+            Scene stseen2 = new Scene(vBox);
+            kusimus.setScene(stseen2);
+            kusimus.show();
+        }
 
-    private static void salvestaLogi() throws IOException {
-        try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("logifail.txt")))) {
-            bw.write("Lõpetamise aeg: " + new java.sql.Timestamp(System.currentTimeMillis()));
-            for (String tegevus : tegevusteLogi) {
-                bw.write(tegevus + "\n");
+        private static void salvestaLogi () throws IOException {
+            try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("logifail.txt")))) {
+                bw.write("Lõpetamise aeg: " + new java.sql.Timestamp(System.currentTimeMillis()));
+                for (String tegevus : tegevusteLogi) {
+                    bw.write(tegevus + "\n");
+                }
             }
         }
-    }
 
 
-    public static void main(String[] args) {
-        launch(args);
+        public static void main (String[]args){
+            launch(args);
+        }
     }
-}
