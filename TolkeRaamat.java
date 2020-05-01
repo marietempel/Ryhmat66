@@ -18,13 +18,13 @@ public class TolkeRaamat extends Raamat {
         this.tõlkeAvaldamisaasta = tõlkeAvaldamisaasta;
     }
 
+    public String getTõlkePealkiri() {
+        return tõlkePealkiri;
+    }
+
     @Override
     public String toString() {
-        return super.toString() + " " +
-                "tõlke pealkiri: '" + tõlkePealkiri + '\'' +
-                ", tõlkija: '" + tõlkija + '\'' +
-                ", tõlke avaldamisaasta: '" + tõlkeAvaldamisaasta + '\'' +
-                '}';
+        return super.toString() + ";" + tõlkePealkiri + ";" + tõlkija + ";" + tõlkeAvaldamisaasta;
     }
 
 
