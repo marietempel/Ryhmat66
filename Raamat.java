@@ -1,12 +1,3 @@
-package rühmatöö1;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 public class Raamat {
 
     //autori perenimi;autori eesnimi;originaal pealkiri;originaal ilmumisaasta;t6lke pealkiri;t6lkja;
