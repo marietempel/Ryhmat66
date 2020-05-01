@@ -1,7 +1,3 @@
-package rühmatöö1;
-
-import java.util.List;
-
 public class TolkeRaamat extends Raamat {
 
     //t6lke pealkiri;t6lkja;t6lke avaldamisaasta;
@@ -29,10 +25,6 @@ public class TolkeRaamat extends Raamat {
                 ", tõlkija: '" + tõlkija + '\'' +
                 ", tõlke avaldamisaasta: '" + tõlkeAvaldamisaasta + '\'' +
                 '}';
-    }
-
-    public String getTõlkePealkiri() {
-        return tõlkePealkiri;
     }
 
 
